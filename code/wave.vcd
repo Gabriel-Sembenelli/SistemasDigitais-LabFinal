@@ -1,0 +1,149 @@
+$date
+  Sat Jul 25 13:29:07 2026
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module numeric_std $end
+$upscope $end
+$scope module fp_adder_test $end
+$var reg 1 ! clk $end
+$var reg 8 " sw[7:0] $end
+$var reg 4 # btn[3:0] $end
+$var reg 4 $ an[3:0] $end
+$var reg 8 % sseg[7:0] $end
+$var reg 1 & sign1 $end
+$var reg 1 ' sign2 $end
+$var reg 4 ( exp1[3:0] $end
+$var reg 4 ) exp2[3:0] $end
+$var reg 8 * frac1[7:0] $end
+$var reg 8 + frac2[7:0] $end
+$var reg 1 , sign_out $end
+$var reg 4 - exp_out[3:0] $end
+$var reg 8 . frac_out[7:0] $end
+$var reg 8 / led3[7:0] $end
+$var reg 8 0 led2[7:0] $end
+$var reg 8 1 led1[7:0] $end
+$var reg 8 2 led0[7:0] $end
+$scope module fp_add_unit $end
+$var reg 1 3 sign1 $end
+$var reg 1 4 sign2 $end
+$var reg 4 5 exp1[3:0] $end
+$var reg 4 6 exp2[3:0] $end
+$var reg 8 7 frac1[7:0] $end
+$var reg 8 8 frac2[7:0] $end
+$var reg 1 9 sign_out $end
+$var reg 4 : exp_out[3:0] $end
+$var reg 8 ; frac_out[7:0] $end
+$var reg 1 < signb $end
+$var reg 1 = signs $end
+$var reg 4 > expb[3:0] $end
+$var reg 4 ? exps[3:0] $end
+$var reg 4 @ expn[3:0] $end
+$var reg 8 A fracb[7:0] $end
+$var reg 8 B fracs[7:0] $end
+$var reg 8 C fraca[7:0] $end
+$var reg 8 D fracn[7:0] $end
+$var reg 8 E sum_norm[7:0] $end
+$var reg 4 F exp_diff[3:0] $end
+$var reg 9 G sum[8:0] $end
+$var reg 3 H lead0[2:0] $end
+$upscope $end
+$scope module sseg_unit_0 $end
+$var reg 4 I hex[3:0] $end
+$var reg 1 J dp $end
+$var reg 8 K sseg[7:0] $end
+$upscope $end
+$scope module sseg_unit_1 $end
+$var reg 4 L hex[3:0] $end
+$var reg 1 M dp $end
+$var reg 8 N sseg[7:0] $end
+$upscope $end
+$scope module sseg_unit_2 $end
+$var reg 4 O hex[3:0] $end
+$var reg 1 P dp $end
+$var reg 8 Q sseg[7:0] $end
+$upscope $end
+$scope module disp_unit $end
+$var reg 1 R clk $end
+$var reg 1 S reset $end
+$var reg 8 T in3[7:0] $end
+$var reg 8 U in2[7:0] $end
+$var reg 8 V in1[7:0] $end
+$var reg 8 W in0[7:0] $end
+$var reg 4 X an[3:0] $end
+$var reg 8 Y sseg[7:0] $end
+$var reg 18 Z q_reg[17:0] $end
+$var reg 18 [ q_next[17:0] $end
+$var reg 2 \ sel[1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+U!
+bUUUUUUUU "
+bUUUU #
+b0111 $
+b11111111 %
+0&
+U'
+b1000 (
+bUUUU )
+b1UU10101 *
+b1UUUUUUU +
+0,
+b0001 -
+bX0000000 .
+b11111111 /
+b00111000 0
+b10000001 1
+b01001111 2
+03
+U4
+b1000 5
+bUUUU 6
+b1UU10101 7
+b1UUUUUUU 8
+09
+b0001 :
+bX0000000 ;
+0<
+U=
+b1000 >
+bUUUU ?
+b0001 @
+b1UU10101 A
+b1UUUUUUU B
+b00000000 C
+bX0000000 D
+bX0000000 E
+bXXXX F
+bXXXXXXXXX G
+b111 H
+b0001 I
+0J
+b01001111 K
+b0000 L
+1M
+b10000001 N
+bX000 O
+0P
+b00111000 Q
+UR
+0S
+b11111111 T
+b00111000 U
+b10000001 V
+b01001111 W
+b0111 X
+b11111111 Y
+bUUUUUUUUUUUUUUUUUU Z
+bXXXXXXXXXXXXXXXXXX [
+bUU \
