@@ -23,15 +23,16 @@ Run the simulation and output a waveform file.
 
 ```bash
 ghdl -r tb_entity --vcd=wave.vcd
+# or
+ghdl -r tb_entity --wave=wave.ghw
 
 ```
-
-*Tip: Use `--wave=wave.ghw` instead of VCD to better support complex VHDL data types.*
 
 4. **View in GTKWave:**
 Open the generated waveform file to inspect your signals.
 
 ```bash
 gtkwave wave.vcd
-
+# or
+gtkwave wave.ghw
 ```
