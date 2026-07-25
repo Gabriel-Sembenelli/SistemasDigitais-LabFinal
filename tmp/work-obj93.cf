@@ -1,0 +1,7 @@
+v 4
+file . "eq1_testbench.vhd" "e68775b4c8df523d9b4fa25d9654ad28c4cf96b6" "20260725165843.134":
+  entity eq1_testbench at 2( 43) + 0 on 13;
+  architecture tb_arch of eq1_testbench at 8( 137) + 0 on 14;
+file . "eq1.vhd" "bde051316712a7826c5cb4869535672b1b0cbd1d" "20260725165843.133":
+  entity eq1 at 2( 15) + 0 on 11;
+  architecture sop_arch of eq1 at 12( 150) + 0 on 12;
