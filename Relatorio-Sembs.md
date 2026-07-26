@@ -25,11 +25,11 @@ Subtração
 
 ```txt
 base 2                   | base 10 | base 16 (gtkwave)
-  +0.1100 0000 * 2^0101  |   +24   | (s,f,e) = (0, C0, 5)
-  -0.1000 0000 * 2^0101  |   -16   | (s,f,e) = (1, 80, 5)
-  —————————————————————  |   ———   | 
-= +0.0100 0000 * 2^0101  |         | 
-= +0.1000 0000 * 2^0100  | =  +8   | (s,f,e) = (0, 80, 4)
+  +0.1000 0100 * 2^0101  |  +16.5  | (s,f,e) = (0, 84, 5)
+  -0.1000 0000 * 2^0101  |  -16    | (s,f,e) = (1, 80, 5)
+  —————————————————————  |  —————  | 
+= +0.0000 0100 * 2^0101  |         | 
+= +0.1000 0000 * 2^0000  | = +0.5  | (s,f,e) = (0, 80, 0)
 ```
 
 ### Teste 3
@@ -93,3 +93,26 @@ base 2                   | base 10 | base 16 (gtkwave)
   —————————————————————  |   ————— | 
 = +0.1000 0000 * 2^1011  | = +1024 | (s,f,e) = (0, 80, B)
 ```
+
+### Teste 8
+
+A - B com A = b. Dá zero, mas com expoente não nulo
+
+```txt
+base 2                   | base 10 | base 16 (gtkwave)
+  +0.1111 0000 * 2^1111  |  +30720 | (s,f,e) = (0, F0, F)
+  -0.1111 0000 * 2^1111  |  -30720 | (s,f,e) = (1, F0, F)
+  —————————————————————  |  —————— | 
+= -0.0000 0000 * 2^1111  |         | 
+= -0.0000 0000 * 2^1000  | =     0 | (s,f,e) = (1, 00, 8)
+```
+
+## Takeouts
+
+O código, retirado do livro, faz o que foi projetado para fazer, mas tem alguns pontos que não foram considerados.
+A contagem de zeros e o deslocamento à esquerda foram comprovados nos Testes 2, 5, 6 e 8.
+- O Teste 2 resulta em 5 zeros à esquerda e o programa corretamente calcula lead0 = "101", além de corretamente deslocar o significando do resultado final 5 bits para a esquerda, conforme projetado.
+- O Teste 5 resulta em 1 zero à esquerda e o programa corretamente calcula lead0 = "001", embora nenhum deslocamento ocorra nesse caso, pois a quantidade de zeros à esquerda no significando do resultado é maior do que o expoente do número big, então a normalização zerou o resultado final, conforme projetado.
+- O Teste 6 tem o significando completamente zerado e o programa cai no último caso, lead0 = "111", que não é exatamente a quantidade de zeros à esquerda, mas esse fato não resulta em um problema nesse caso, pois foi ignorado pela necessidade de um deslocamento à direita por conta do carry out. Esse teste tem um problema por outro motivo, que é o overflow no expoente, um caso não tratado no livro, ou seja, parece ser um exemplo de "undefined behavior".
+- O Teste 8 deveria resultar em exatamente zero. No entanto, o significando é completamente zerado, o programa cai no último caso, lead0 = "111", além de deslocar 7 casas para a esquerda, resultando em 0.0 * 2^1000, que não é um número normalizado. O livro diz que as representações precisam ser normalizadas ou zero, mas não diz se o zero deve ter um expoente específico. Esse teste parece revelar outro tipo de "undefined behavior".
+

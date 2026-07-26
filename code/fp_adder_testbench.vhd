@@ -41,7 +41,7 @@ begin
         -- test vector 2: positive and negative (subtraction)
         t_sign1 <= '0';
         t_exp1  <= "0101";
-        t_frac1 <= "11000000";
+        t_frac1 <= "10000100";
         t_sign2 <= '1';
         t_exp2  <= "0101";
         t_frac2 <= "10000000";
@@ -90,6 +90,15 @@ begin
         t_sign2 <= '0';
         t_exp2  <= "0011";
         t_frac2 <= "11111111";
+        wait for 200 ns;
+        
+        -- test vector 8: subtraction of equals w/ nonzero exponent
+        t_sign1 <= '0';
+        t_exp1  <= "1111";
+        t_frac1 <= "11110000";
+        t_sign2 <= '1';
+        t_exp2  <= "1111";
+        t_frac2 <= "11110000";
         wait for 200 ns;
         
         wait;
