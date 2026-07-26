@@ -1,0 +1,97 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity fp_adder_tb is
+end fp_adder_tb;
+
+architecture tb_arch of fp_adder_tb is
+    -- input signals
+    signal t_sign1, t_sign2: std_logic;
+    signal t_exp1, t_exp2: std_logic_vector(3 downto 0);
+    signal t_frac1, t_frac2: std_logic_vector(7 downto 0);
+
+    -- output signals
+    signal t_sign_out: std_logic;
+    signal t_exp_out: std_logic_vector(3 downto 0);
+    signal t_frac_out: std_logic_vector(7 downto 0);
+begin
+    -- instantiate the unit under test (uut)
+    uut: entity work.fp_adder(arch)
+        port map(
+            sign1 => t_sign1, sign2 => t_sign2,
+            exp1 => t_exp1, exp2 => t_exp2,
+            frac1 => t_frac1, frac2 => t_frac2,
+            sign_out => t_sign_out,
+            exp_out => t_exp_out,
+            frac_out => t_frac_out
+        );
+
+    -- generate test vectors
+    process
+    begin
+        -- test vector 1: identical positive numbers
+        t_sign1 <= '0';
+        t_exp1  <= "0100";
+        t_frac1 <= "10000000";
+        t_sign2 <= '0';
+        t_exp2  <= "0100";
+        t_frac2 <= "10000000";
+        wait for 200 ns;
+
+        -- test vector 2: positive and negative (subtraction)
+        t_sign1 <= '0';
+        t_exp1  <= "0101";
+        t_frac1 <= "11000000";
+        t_sign2 <= '1';
+        t_exp2  <= "0101";
+        t_frac2 <= "10000000";
+        wait for 200 ns;
+
+        -- test vector 3: different exponents
+        t_sign1 <= '0';
+        t_exp1  <= "0111";
+        t_frac1 <= "10000000";
+        t_sign2 <= '0';
+        t_exp2  <= "0101";
+        t_frac2 <= "11000000";
+        wait for 200 ns;
+        
+        -- test vector 4: subtraction w/ negative result
+        t_sign1 <= '0';
+        t_exp1  <= "0100";
+        t_frac1 <= "10100000";
+        t_sign2 <= '1';
+        t_exp2  <= "1000";
+        t_frac2 <= "11000111";
+        wait for 200 ns;
+        
+        -- test vector 5: subtraction w/ too small result
+        t_sign1 <= '0';
+        t_exp1  <= "0000";
+        t_frac1 <= "11111111";
+        t_sign2 <= '1';
+        t_exp2  <= "0000";
+        t_frac2 <= "10000000";
+        wait for 200 ns;
+        
+        -- test vector 6: addition w/ too big result
+        t_sign1 <= '0';
+        t_exp1  <= "1111";
+        t_frac1 <= "11111111";
+        t_sign2 <= '0';
+        t_exp2  <= "1000";
+        t_frac2 <= "10000000";
+        wait for 200 ns;
+        
+        -- test vector 7: big + small, losing bits
+        t_sign1 <= '0';
+        t_exp1  <= "1011";
+        t_frac1 <= "10000000";
+        t_sign2 <= '0';
+        t_exp2  <= "0011";
+        t_frac2 <= "11111111";
+        wait for 200 ns;
+        
+        wait;
+    end process;
+end tb_arch;
