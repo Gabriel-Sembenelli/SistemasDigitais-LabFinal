@@ -3,6 +3,7 @@
 - Vibecodei o fp_adder_testbench
 - Adicionei manualmente mais testes
   - Confirmei o funcionamento correto (normalização ok)
+  - Encontrei undefined behavior para 1. overflow de expoente e 2. resultado nulo com expoente não nulo
 
 ## Test-driven approach:
 
