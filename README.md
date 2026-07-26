@@ -3,28 +3,28 @@
 ## Compiling and running
 
 1. **Analyze (Compile):**
-Compile your design and testbench files. Order matters: compile dependencies before the files that use them.
+Order matters: compile dependencies before the files that use them.
 
 ```bash
-ghdl -a design.vhd testbench.vhd
+ghdl -a fp_adder.vhd fp_adder_testbench.vhd
 
 ```
 
-2. **Elaborate:**
-Build the executable for your testbench. Replace `tb_entity` with the actual name of your testbench entity.
+1. **Elaborate:**
+Build the executable for your testbench.
 
 ```bash
-ghdl -e tb_entity
+ghdl -e fp_adder_tb
 
 ```
 
-3. **Run and Export Waveform:**
+1. **Run and Export Waveform:**
 Run the simulation and output a waveform file.
 
 ```bash
-ghdl -r tb_entity --vcd=wave.vcd
+ghdl -r fp_adder_tb --vcd=wave.vcd
 # or
-ghdl -r tb_entity --wave=wave.ghw
+ghdl -r fp_adder_tb --wave=wave.ghw
 
 ```
 
@@ -35,4 +35,10 @@ Open the generated waveform file to inspect your signals.
 gtkwave wave.vcd
 # or
 gtkwave wave.ghw
+```
+
+**All in One**
+
+```bash
+ghdl -a fp_adder.vhd fp_adder_testbench.vhd && ghdl -e fp_adder_tb && ghdl -r fp_adder_tb --vcd=wave.vcd && gtkwave wave.vcd
 ```
