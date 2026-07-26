@@ -10,7 +10,7 @@ ghdl -a fp_adder.vhd fp_adder_testbench.vhd
 
 ```
 
-1. **Elaborate:**
+2. **Elaborate:**
 Build the executable for your testbench.
 
 ```bash
@@ -18,7 +18,7 @@ ghdl -e fp_adder_tb
 
 ```
 
-1. **Run and Export Waveform:**
+3. **Run and Export Waveform:**
 Run the simulation and output a waveform file.
 
 ```bash
