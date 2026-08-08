@@ -53,8 +53,8 @@ begin
     -- HEX5: Signal / Sign ('-' if 1, blank if 0)
     HEX5 <= "10111111" when sign_out = '1' else "11111111";
 
-    -- HEX4: Just a dot (Bit 7 is DP)
-    HEX4 <= "01111111";
+    -- HEX4: Just a "0."
+    HEX4 <= "01000000";
 
     -- HEX3: 4 MSBs of fraction
     sseg_unit_frac_high: entity work.hex_to_sseg
