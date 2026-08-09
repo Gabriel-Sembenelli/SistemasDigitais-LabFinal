@@ -29,7 +29,16 @@ begin
     -- generate test vectors
     process
     begin
-        -- test vector 1: identical positive numbers
+        -- test vector 1: sum with no special cases in normalization
+        t_sign1 <= '0';
+        t_exp1  <= "0111";
+        t_frac1 <= "10000000";
+        t_sign2 <= '0';
+        t_exp2  <= "0101";
+        t_frac2 <= "11000000";
+        wait for 200 ns;
+
+        -- test vector 2: sum with carry out
         t_sign1 <= '0';
         t_exp1  <= "0100";
         t_frac1 <= "10000000";
@@ -38,31 +47,22 @@ begin
         t_frac2 <= "10000000";
         wait for 200 ns;
 
-        -- test vector 2: positive and negative (subtraction)
+        -- test vector 3: subtraction with left shift
         t_sign1 <= '0';
         t_exp1  <= "0101";
-        t_frac1 <= "10000100";
+        t_frac1 <= "10001000";
         t_sign2 <= '1';
         t_exp2  <= "0101";
         t_frac2 <= "10000000";
         wait for 200 ns;
-
-        -- test vector 3: different exponents
-        t_sign1 <= '0';
-        t_exp1  <= "0111";
-        t_frac1 <= "10000000";
-        t_sign2 <= '0';
-        t_exp2  <= "0101";
-        t_frac2 <= "11000000";
-        wait for 200 ns;
         
-        -- test vector 4: subtraction w/ negative result
+        -- test vector 4: subtraction w/ too small result
         t_sign1 <= '0';
         t_exp1  <= "0100";
-        t_frac1 <= "10100000";
+        t_frac1 <= "11110100";
         t_sign2 <= '1';
-        t_exp2  <= "1000";
-        t_frac2 <= "11000111";
+        t_exp2  <= "0100";
+        t_frac2 <= "11110000";
         wait for 200 ns;
         
         -- test vector 5: subtraction w/ too small result

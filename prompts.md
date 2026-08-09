@@ -9,3 +9,5 @@ A: transcreveu corretamente, a menos de espaçamento e indentação
 Q: Generate a testbench for the current fp_adder. You can use this given code as a syntax reference. [fp_adder.vhd, eq1_testbench.vhd]
 A: Gerou um testbench funcional com 3 testes básicos.
 
+Q: Adicione um diagrama na seção 2 do relatório, ilustrando o fluxo de dados e as variáveis especificadas no VHDL
+A: Gerou o mermaid
