@@ -196,7 +196,7 @@ base 2                   | base 10 | base 16 (gtkwave)
 = -0.0000 0000 * 2^1000  | =     0 | (s,f,e) = (1, 00, 8)
 ```
 
-![Print das Telas do Simulador com as Formas de Onda](link-da-imagem-aqui.jpg)
+![Imagem1](img/fp_adder_testbench-01.png)
 
 ### Código VHDL Final 
 

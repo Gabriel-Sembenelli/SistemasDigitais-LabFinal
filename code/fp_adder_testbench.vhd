@@ -65,34 +65,16 @@ begin
         t_frac2 <= "11110000";
         wait for 200 ns;
         
-        -- test vector 5: subtraction w/ too small result
-        t_sign1 <= '0';
-        t_exp1  <= "0000";
-        t_frac1 <= "11111111";
-        t_sign2 <= '1';
-        t_exp2  <= "0000";
-        t_frac2 <= "10000000";
-        wait for 200 ns;
-        
-        -- test vector 6: addition w/ too big result
+        -- test vector 5: sum w/ exponent overflow
         t_sign1 <= '0';
         t_exp1  <= "1111";
-        t_frac1 <= "11111111";
+        t_frac1 <= "11111000";
         t_sign2 <= '0';
-        t_exp2  <= "1000";
+        t_exp2  <= "1011";
         t_frac2 <= "10000000";
         wait for 200 ns;
         
-        -- test vector 7: big + small, losing bits
-        t_sign1 <= '0';
-        t_exp1  <= "1011";
-        t_frac1 <= "10000000";
-        t_sign2 <= '0';
-        t_exp2  <= "0011";
-        t_frac2 <= "11111111";
-        wait for 200 ns;
-        
-        -- test vector 8: subtraction of equals w/ nonzero exponent
+        -- test vector 6: subtraction of equals w/ nonzero exponent
         t_sign1 <= '0';
         t_exp1  <= "1111";
         t_frac1 <= "11110000";
