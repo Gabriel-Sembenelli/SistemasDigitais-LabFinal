@@ -16,6 +16,8 @@ Este projeto adapta o somador de ponto flutuante simplificado (13 bits) do livro
 
 ## 2. Descrição gráfica do funcionamento do sistema
 
+Neste Repositório, utilizamos os seguintes arquivos para a simulação ( fp_adder_test.vhd ; fp_adder.vhd ; hex_to_sseg.vhd ; disp_mux.vhd) teste ( fp_adder_test_testbench.vht) e configuração (DE10_LITE.qsf).
+
 A parte lógica do somador (`fp_adder.vhd`) recebe dois números em formato de ponto flutuante $(-1)^s \times 0.f \times 2^e$, onde $s$ corresponde ao sinal, $f$ corresponde à parte fracionária (ou significando) e $e$ corresponde ao expoente.
 O funcionamento da soma é em 4 estágios:
 
@@ -63,7 +65,6 @@ A arquitetura original utilizava 8 switches, 4 botões e 4 displays de sete segm
 
 **O que mudamos no VHDL original:**
 
-* Removemos o módulo `disp_mux.vhd`, pois a placa DE10-Lite permite exibição simultânea.
 * Reorganizamos a lógica para entrar com os números usando uma lógica sequencial. A placa DE10-Lite possui 10 switches (`SW`) e 2 botões (`KEY`). Assim, o primeiro switch seleciona o sinal, os próximos 5 switches selecionam os 5 bits mais à esquerda do significando (os últimos 3 bits são fixados em zero) e os últimos 4 switches selecionam o expoente. Os dois botões se combinam para salvar a entrada atual como primeiro ou segundo número (um botão como seletor e um botão para salvar, enquanto um clock captura seus sinais).
 * Roteamos as saídas do resultado diretamente para os 6 displays independentes da placa, `HEX5` a `HEX0`, sem multiplexação. `HEX5` para sinal, `HEX4` fixo em "0.", `HEX3` e `HEX2` para os 4 bits mais significativos e menos significativos da parte fracionária, respectivamente; `HEX1` fixo em "E", como abreviação de "vezes 2 elevado a"; `HEX0` para o expoente.
 * Reorganizamos as strings correspondentes aos sete segmentos no arquivo `hex_to_sseg.vhd`, invertendo-as para compatibilidade com a DE10-Lite.
