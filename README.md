@@ -25,7 +25,7 @@ O funcionamento da soma é em 4 estágios:
 
 * **3. Adição/Subtração:** Realiza a soma ou subtração dos significandos a depender dos sinais (soma quando iguais e subtrai caso contrário), originando a variável `sum` que inclui um bit extra para *carry-out*.
 
-* **4. Normalização:** Conta a quantidade de zeros à esquerda do significando (`lead0`) e faz a normalização com condições especiais: Se houve carry out ($1.f \times 2^e$), então o número resultante é deslocado para a direita ($0.1f \times 2^(e+1)$); Se o número é pequeno demais para normalizar, então o resultado é definido como zero; em condições normais, o significando é deslocado `lead0` casas para a esquerda e o expoente também é ajustado de acordo.
+* **4. Normalização:** Conta a quantidade de zeros à esquerda do significando (`lead0`) e faz a normalização com condições especiais: Se houve carry out ($1.f \times 2^e$), então o número resultante é deslocado para a direita ($0.1f \times 2^{e+1}$); Se o número é pequeno demais para normalizar, então o resultado é definido como zero; em condições normais, o significando é deslocado `lead0` casas para a esquerda e o expoente também é ajustado de acordo.
 
 O resultado após a normalização é encaminhado para as saídas e o sinal resultante é o mesmo do maior número (big).
 
