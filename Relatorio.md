@@ -25,7 +25,7 @@ O funcionamento da soma é em 4 estágios:
 
 * **3. Adição/Subtração:** Realiza a soma ou subtração dos significandos a depender dos sinais (soma quando iguais e subtrai caso contrário), originando a variável `sum` que inclui um bit extra para *carry-out*.
 
-* **4. Normalização:** Conta a quantidade de zeros à esquerda do significando (`lead0`) e faz a normalização com condições especiais: Se houve carry out ($1.f \times 2^e$), então o número resultante é deslocado para a direita ($0.1f \times 2^(e+1)$); Se o número é pequeno demais para normalizar, então o resultado é definido como zero; Em condições normais, o significando é deslocado `lead0` casas para a esquerda e o expoente também é ajustado de acordo.
+* **4. Normalização:** Conta a quantidade de zeros à esquerda do significando (`lead0`) e faz a normalização com condições especiais: Se houve carry out ($1.f \times 2^e$), então o número resultante é deslocado para a direita ($0.1f \times 2^(e+1)$); Se o número é pequeno demais para normalizar, então o resultado é definido como zero; em condições normais, o significando é deslocado `lead0` casas para a esquerda e o expoente também é ajustado de acordo.
 
 O resultado após a normalização é encaminhado para as saídas e o sinal resultante é o mesmo do maior número (big).
 
@@ -117,7 +117,7 @@ flowchart TD
 
 ### Simulação
 
-Neste Repositório, utilizamos os seguintes arquivos para a simulação (`fp_adder.vhd`; `fp_adder_test.vhd`; `hex_to_sseg.vhd`) teste (`fp_adder_testbench.vhd`; `fp_adder_test_testbench.vht`) e configuração (`DE10_LITE.qsf`).
+Neste repositório, utilizamos os seguintes arquivos: para a simulação (`fp_adder.vhd`, `fp_adder_test.vhd`, `hex_to_sseg.vhd`); para teste (`fp_adder_testbench.vhd`, `fp_adder_test_testbench.vht`); e para configuração (`DE10_LITE.qsf`).
 
 > No diretório `code/utils` é possível encontrar scripts úteis em geral, como conversores de decimal para float binário, resultado hexadecimal para decimal, além de um gerador de todos os números representáveis com a lógica desenvolvida.
 
@@ -227,7 +227,7 @@ O código `fp_adder_test_testbench.vhd` foi utilizado para originar as imagens a
 
 ### Código VHDL Final
 
-O parte lógica do código (`fp_adder.vhd`) foi mantida inalterada.
+A parte lógica do código (`fp_adder.vhd`) foi mantida inalterada.
 A parte de integração com hardware (`fp_adder_test.vhd`) é onde está o código principal e onde ocorreram as mudanças descritas na Seção 3. 
 
 ```vhdl
@@ -398,7 +398,7 @@ Resultado
 
 ## 5. Diário de Bordo de IA 
 
-Utilizamos o [Gemini] para auxiliar na geração dos Testbenches, na refatoração do código e na busca por typos no relatório final. Abaixo está a análise crítica do uso da ferramenta.
+Utilizamos o Gemini e o Claude para auxiliar na geração dos Testbenches, na refatoração do código e na busca por typos no relatório final. Abaixo está a análise crítica do uso da ferramenta.
 
 **Prompts Utilizados:**
 1. Transcreva os códigos nesse PDF para código copiável.
@@ -406,20 +406,23 @@ Utilizamos o [Gemini] para auxiliar na geração dos Testbenches, na refatoraç�
 3. Generate a testbench for the current fp_adder. You can use this given code as a syntax reference. [fp_adder.vhd, eq1_testbench.vhd]
 4. Adicione diagramas nas seções 2 e 3 do relatório, ilustrando o fluxo de dados e as variáveis especificadas no VHDL.
 5. (arquivo fp_adder_test.vhd em anexo) Create a testbench for this entity. this file is for integrating the adder with the hex displays, i need to make sure the correct b16 numbers are being displayed. There is a multiplexing for selecting the operands. the KEY selects one of 2 numbers 13 bit (sign + 4bit exponent + 8bit mantissa separated into two parts here), this goes into the sw one at a time. How can i test it?
+6. Procure por typos ou erros graves de português neste relatório. Busque alterações mínimas e estritamente necessárias.
 
 **O Erro da IA (Alucinação):**
 1. O PDF anexado foi recortado do livro e continha os códigos `fp_adder.vhd` e `fp_adder_test.vhd`. A IA bugou e não transcreveu o segundo código corretamente.
 2. A notação com | indica que vários prompts separados foram feitos, cada um com um recorte específico do PDF. Nesses casos, a IA transcreveu corretamente, a menos de espaçamento e indentação, que precisaram ser ajustados.
 3. Além do `fp_adder.vhd`, foi anexado o `eq1_testbench.vhd` dado em outro laboratório. A IA gerou um testbench funcional com 3 testes básicos, mas que não testavam todos os casos da normalização.
-4. Gerou os mermaids, mas que não compilavam e apresentavam problemas nas problemas nas setas, que atravessavam os textos.
-5. Criou a funcao load_operand que recebe todos os parâmetros e carrega cada operando um por vez, o que responde a minha maior dúvida no momento do prompt. A IA também criou um process inteiro que eu ignorei, já que era muito mais complexo do que o necessário, e não testava o que o grupo queria. Que para este testbench era a integracao com o hardware, não a correção das somas.
+4. Gerou os mermaids, mas que não compilavam e apresentavam problemas nas setas, que atravessavam os textos.
+5. Criou a funcao load_operand que recebe todos os parâmetros e carrega cada operando um por vez, o que responde a maior dúvida no momento do prompt. A IA também criou um process inteiro que foi ignorado, pois era muito mais complexo do que o necessário, e não testava o que o grupo queria: para este testbench, era a integração com o hardware, não a correção das somas.
+6. Encontrou uma série de typos e erros de concordância, mas havia uma palavra errada que a IA não apontou.
 
 **A Correção Humana:**
 1. A forma de fazer o prompt inicial foi melhorada, dando origem aos prompts mostrados no item 2.
 2. O espaçamento e indentação foram ajustados manualmente para refletir o que estava no livro.
 3. Os testes gerados serviram como sintaxe, mas eventualmente foram completamente modificados à mão para testar o que era necessário.
 4. O código foi manualmente corrigido para compilar e as setas foram manualmente ajustadas para apontarem para os blocos corretos sem atravessar os textos
-5. O código foi simplificado para facilitar o entendimento, já que a IA acabou utilizando muitas features do vhdl que fogiam do escopo do problema e dificultavam a compreensão do que estava sendo feito.
+5. O código foi simplificado para facilitar o entendimento, já que a IA acabou utilizando muitas features do vhdl que fugiam do escopo do problema e dificultavam a compreensão do que estava sendo feito.
+6. A palavra em questão foi corrigida manualmente.
 
 ## 6. Contribuição dos participantes
 
