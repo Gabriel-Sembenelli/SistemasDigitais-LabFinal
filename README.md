@@ -236,7 +236,7 @@ A parte lógica do código (`fp_adder.vhd`) foi mantida inalterada.
 A parte de integração com hardware (`fp_adder_test.vhd`) é onde está o código principal e onde ocorreram as mudanças descritas na Seção 3. 
 
 ```vhdl
-fp_adder_test.vhd
+-- fp_adder_test.vhd
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -319,11 +319,11 @@ end arch;
 
 O funcionamento na Placa real ilustra outros casos e pode ser visto [neste vídeo](https://youtu.be/LXYAIrEhDb0)
 
-Abaixo, imagens do funcionamento no Questa para os casos simulados anteriormente com o gtkwave.
+Abaixo, imagens do funcionamento no Questa para os 4 casos principais simulados anteriormente com o gtkwave.
 
 **Teste 1**
 
-A entrada do primeiro número não foi capturada nesse print, mas os valores foram:
+A entrada do primeiro número não foi capturada nesse print, mas os valores são:
 
 - Número 1 (SW) = 0100000111 = 0 10000 0111 => +0.10000000 * 2^0111 (= +64)
 - Número 2 (SW) = 0110000101 = 0 11000 0101 => +0.11000000 * 2^0101 (= +24)
@@ -415,7 +415,7 @@ Utilizamos o Gemini e o Claude para auxiliar na geração dos Testbenches, na re
 
 **O Erro da IA (Alucinação):**
 1. O PDF anexado foi recortado do livro e continha os códigos `fp_adder.vhd` e `fp_adder_test.vhd`. A IA bugou e não transcreveu o segundo código corretamente.
-2. A notação com | indica que vários prompts separados foram feitos, cada um com um recorte específico do PDF. Nesses casos, a IA transcreveu corretamente, a menos de espaçamento e indentação, que precisaram ser ajustados.
+2. A notação com | indica que vários prompts separados foram feitos, cada um com um recorte específico do PDF. Nesses casos, a IA transcreveu corretamente, a menos de espaçamento e indentação, que foram manualmente ajustados.
 3. Além do `fp_adder.vhd`, foi anexado o `eq1_testbench.vhd` dado em outro laboratório. A IA gerou um testbench funcional com 3 testes básicos, mas que não testavam todos os casos da normalização.
 4. Gerou os mermaids, mas que não compilavam e apresentavam problemas nas setas, que atravessavam os textos.
 5. Criou a funcao load_operand que recebe todos os parâmetros e carrega cada operando um por vez, o que responde a maior dúvida no momento do prompt. A IA também criou um process inteiro que foi ignorado, pois era muito mais complexo do que o necessário, e não testava o que o grupo queria: para este testbench, era a integração com o hardware, não a correção das somas.
