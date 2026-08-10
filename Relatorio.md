@@ -308,9 +308,40 @@ end arch;
 
 ### Funcionamento na Placa
 
-Abaixo, imagens do funcionamento na Placa para os casos descritos.
+O funcionamento na Placa real ilustra outros casos e pode ser visto [neste vídeo](https://youtu.be/LXYAIrEhDb0)
 
-*Etapa 4 (considerando qeu a Etapa 4 considera toda a documentação em si)*
+Abaixo, imagens do funcionamento no Questa para os casos simulados anteriormente com o gtkwave.
+
+**Teste 1**
+
+Número 1 (SW) = 0100000111 = 0 10000 0111 => +0.10000000 * 2^0111 (= +64)
+Número 2 (SW) = 0110000101 = 0 11000 0101 => +0.11000000 * 2^0101 (= +24)
+
+Resultado
+HEX5 = 11111111 = (apagado indica número positivo)
+HEX4 = 01000000 = 0.
+HEX3 = 10000011 = b
+HEX2 = 11000000 = 0
+HEX1 = 10000110 = E
+HEX0 = 11111000 = 7
+(= +88)
+
+
+**Teste 2**
+
+Número 1 (SW) = 0100000111 = 0 10000 0111 => +0.10000000 * 2^0111 (= +64)
+Número 2 (SW) = 0110000101 = 0 11000 0101 => +0.11000000 * 2^0101 (= +24)
+
+Resultado
+HEX5 = 11111111 = (apagado indica número positivo)
+HEX4 = 01000000 = 0.
+HEX3 = 10000011 = b
+HEX2 = 11000000 = 0
+HEX1 = 10000110 = E
+HEX0 = 11111000 = 7
+(= +88)
+
+*Etapa 4*
 
 ## 5. Diário de Bordo de IA 
 
