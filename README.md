@@ -411,7 +411,9 @@ Utilizamos o Gemini e o Claude para auxiliar na geração dos Testbenches, na re
 3. Generate a testbench for the current fp_adder. You can use this given code as a syntax reference. [fp_adder.vhd, eq1_testbench.vhd]
 4. Adicione diagramas nas seções 2 e 3 do relatório, ilustrando o fluxo de dados e as variáveis especificadas no VHDL.
 5. (arquivo fp_adder_test.vhd em anexo) Create a testbench for this entity. this file is for integrating the adder with the hex displays, i need to make sure the correct b16 numbers are being displayed. There is a multiplexing for selecting the operands. the KEY selects one of 2 numbers 13 bit (sign + 4bit exponent + 8bit mantissa separated into two parts here), this goes into the sw one at a time. How can i test it?
-6. Procure por typos ou erros graves de português neste relatório. Busque alterações mínimas e estritamente necessárias.
+6. Make a script (python) that converts a hexadecimal float to decimal. The hexadecimal float is represented as 0.'H1' 'H2' 'E' where H1 and H2 are fractional part and E is an exponent with base 2. So the input will be given as three characters: H1 H2 E. The resulting number needs to be calculated as 2^hex2dec(E) * bin2dec(hex2bin(H1) | hex2bin(H2)) / 2^8, where | means concatenation of the digits. Thus, 0.F8 F = 0.{F}_16{8}_16 * 2^{F}_16 = 0.{11111000}_2 * 2^{1111}_2 = {11111000}_2 / 2^{8}_10 * 2^{1111}_2 /  = {11111000}_2 * 2^{7}_10 = {111110000000000}_2 = {31744}_10. (Ainda na mesma conversa) Now I want to make another script, the reverse. Given an integer in base 10, I want the corresponding float number in binary.
+7. Make a python code that iterates all 2^9 binary strings of 9 bits and show numbers correspondent to those strings. A rule to convert a string to a number is like this: Given a string of 9 bits (B1, ..., B9), we read it as a float number in base 2: 0.B1 B2 B3 B4 B5 * 2^(B6 B7 B8 B9). Thus, "101000100" = 0.10100 * 2^(0100) = {1010}_2 = {10}_10. This code must iterate all 2^9 strings and output all decimal numbers obtained (exclude duplicates), in order.
+8. Procure por typos ou erros graves de português neste relatório. Busque alterações mínimas e estritamente necessárias.
 
 **O Erro da IA (Alucinação):**
 1. O PDF anexado foi recortado do livro e continha os códigos `fp_adder.vhd` e `fp_adder_test.vhd`. A IA bugou e não transcreveu o segundo código corretamente.
@@ -419,7 +421,9 @@ Utilizamos o Gemini e o Claude para auxiliar na geração dos Testbenches, na re
 3. Além do `fp_adder.vhd`, foi anexado o `eq1_testbench.vhd` dado em outro laboratório. A IA gerou um testbench funcional com 3 testes básicos, mas que não testavam todos os casos da normalização.
 4. Gerou os mermaids, mas que não compilavam e apresentavam problemas nas setas, que atravessavam os textos.
 5. Criou a funcao load_operand que recebe todos os parâmetros e carrega cada operando um por vez, o que responde a maior dúvida no momento do prompt. A IA também criou um process inteiro que foi ignorado, pois era muito mais complexo do que o necessário, e não testava o que o grupo queria: para este testbench, era a integração com o hardware, não a correção das somas.
-6. Encontrou uma série de typos e erros de concordância, mas havia uma palavra errada que a IA não apontou.
+6. Gerou scripts corretos mas que forçavam inputs, ao invés de ler do teclado. A representação do expoente em base 2 não estava configurada para aparecer sempre com 4 bits.
+7. Produziu o gerador corretamente.
+8. Encontrou uma série de typos e erros de concordância, mas havia uma palavra errada que a IA não apontou.
 
 **A Correção Humana:**
 1. A forma de fazer o prompt inicial foi melhorada, dando origem aos prompts mostrados no item 2.
@@ -427,7 +431,9 @@ Utilizamos o Gemini e o Claude para auxiliar na geração dos Testbenches, na re
 3. Os testes gerados serviram como sintaxe, mas eventualmente foram completamente modificados à mão para testar o que era necessário.
 4. O código foi manualmente corrigido para compilar e as setas foram manualmente ajustadas para apontarem para os blocos corretos sem atravessar os textos
 5. O código foi simplificado para facilitar o entendimento, já que a IA acabou utilizando muitas features do vhdl que fugiam do escopo do problema e dificultavam a compreensão do que estava sendo feito.
-6. A palavra em questão foi corrigida manualmente.
+6. O código foi ajustado manualmente para ler do teclado e exibir o expoente da forma desejada.
+7. Não foi necessário.
+8. A palavra em questão foi corrigida manualmente.
 
 ## 6. Contribuição dos participantes
 
