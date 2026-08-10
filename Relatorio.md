@@ -72,7 +72,7 @@ flowchart TD
 
 ## 3. Adaptações de Hardware (DE10-Lite)
 
-A arquitetura original utilizava 8 switches, 4 botões e 4 displays de sete segmentos. O respectivo código, em `code/old`, fixava o sinal (`0`) e expoente (`1000`) do primeiro número, além de fixar alguns bits de ambos significandos. Além disso, era utilizado um módulo de multiplexação no tempo (`disp_mux.vhd`) para exibir o resultado nos displays.
+A arquitetura original utilizava 8 switches, 4 botões e 4 displays de sete segmentos. O respectivo código, em `code/old/fp_adder_test.vhd`, fixava o sinal (`0`) e expoente (`1000`) do primeiro número, além de fixar alguns bits de ambos significandos. Além disso, era utilizado um módulo de multiplexação no tempo (`disp_mux.vhd`) para exibir o resultado nos displays.
 
 **O que mudamos no VHDL original:**
 
@@ -80,6 +80,8 @@ A arquitetura original utilizava 8 switches, 4 botões e 4 displays de sete segm
 * Reorganizamos a lógica para entrar com os números usando uma lógica sequencial. A placa DE10-Lite possui 10 switches (`SW`) e 2 botões (`KEY`). Assim, o primeiro switch seleciona o sinal, os próximos 5 switches selecionam os 5 bits mais à esquerda do significando (os últimos 3 bits são fixados em zero) e os últimos 4 switches selecionam o expoente. Os dois botões se combinam para salvar a entrada atual como primeiro ou segundo número (um botão como seletor e um botão para salvar, enquanto um clock captura seus sinais).
 * Roteamos as saídas do resultado diretamente para os 6 displays independentes da placa, `HEX5` a `HEX0`, sem multiplexação. `HEX5` para sinal, `HEX4` fixo em "0.", `HEX3` e `HEX2` para os 4 bits mais significativos e menos significativos da parte fracionária, respectivamente; `HEX1` fixo em "E", como abreviação de "vezes 2 elevado a"; `HEX0` para o expoente.
 * Reorganizamos as strings correspondentes aos sete segmentos no arquivo `hex_to_sseg.vhd`, invertendo-as para compatibilidade com a DE10-Lite.
+
+> Obs.: Os códigos antigos foram mantidos em `code/old` para efeitos de comparação.
 
 **Descrição gráfica do sistema**
 
