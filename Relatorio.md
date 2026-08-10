@@ -216,6 +216,11 @@ base 2                   | base 10 | base 16 (gtkwave)
 ```
 
 O código `fp_adder_test_testbench.vhd` foi utilizado para originar as imagens abaixo.
+O comando utilizado foi:
+
+```bash
+ghdl -a fp_adder.vhd fp_adder_testbench.vhd && ghdl -e fp_adder_tb && ghdl -r fp_adder_tb --vcd=wave.vcd && gtkwave wave.vcd
+```
 
 ![Imagem1](img/fp_adder_testbench-01.png)
 
