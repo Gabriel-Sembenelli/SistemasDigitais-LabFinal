@@ -394,24 +394,30 @@ Resultado
 
 ## 5. Diário de Bordo de IA 
 
-Utilizamos o [ChatGPT/Claude/Gemini] para auxiliar na geração do Testbench e na refatoração do código. Abaixo está a análise crítica do uso da ferramenta.
+Utilizamos o [Gemini] para auxiliar na geração dos Testbenches, na refatoração do código e na busca por typos no relatório final. Abaixo está a análise crítica do uso da ferramenta.
 
 **Prompts Utilizados:**
-> "Insira aqui o prompt exato que você usou..."
+1. Transcreva os códigos nesse PDF para código copiável.
+2. Transcreva o código "Listing (4.13|3.12|3.19|3.20)" desse PDF para código copiável
+3. Generate a testbench for the current fp_adder. You can use this given code as a syntax reference. [fp_adder.vhd, eq1_testbench.vhd]
+4. Adicione diagramas nas seções 2 e 3 do relatório, ilustrando o fluxo de dados e as variáveis especificadas no VHDL.
 
 **O Erro da IA (Alucinação):**
-> Descreva aqui o que a IA errou (ex: tentou usar pinos inexistentes, criou clock em testbench de circuito combinacional, etc).
+1. O PDF anexado foi recortado do livro e continha os códigos `fp_adder.vhd` e `fp_adder_test.vhd`. A IA bugou e não transcreveu o segundo código corretamente.
+2. A notação com | indica que vários prompts separados foram feitos, cada um com um recorte específico do PDF. Nesses casos, a IA transcreveu corretamente, a menos de espaçamento e indentação, que precisaram ser ajustados.
+3. Além do `fp_adder.vhd`, foi anexado o `eq1_testbench.vhd` dado em outro laboratório. A IA gerou um testbench funcional com 3 testes básicos, mas que não testavam todos os casos da normalização.
+4. Gerou os mermaids, mas que não compilavam e apresentavam problemas nas problemas nas setas, que atravessavam os textos.
 
 **A Correção Humana:**
-> Como você corrigiu o código gerado para que ele funcionasse na nossa placa e na simulação.
+1. A forma de fazer o prompt inicial foi melhorada, dando origem aos prompts mostrados no item 2.
+2. O espaçamento e indentação foram ajustados manualmente para refletir o que estava no livro.
+3. Os testes gerados serviram como sintaxe, mas eventualmente foram completamente modificados à mão para testar o que era necessário.
+4. O código foi manualmente corrigido para compilar e as setas foram manualmente ajustadas para apontarem para os blocos corretos sem atravessar os textos
 
 ## 6. Contribuição dos participantes
 
-Utilize a taxonomia CRediT, seguem exemplos:
+Utilizando a taxonomia CRediT ([ref1](https://credit.niso.org/), [ref2](https://revistas.unijui.edu.br/public/site/Taxonomia_CRediT.pdf)):
 
-* [Nome do Aluno 1], Administração do Projeto, Desenvolvimento, implementação e teste de software, Análise Formal
-* [Nome do Aluno 2], Validação de dados e experimentos
-* [Nome do Aluno 3], Redação do manuscrito original, Validação de dados e experimentos
-
-[CRediT - Link1](https://credit.niso.org/)
-[CRediT - Link2](https://revistas.unijui.edu.br/public/site/Taxonomia_CRediT.pdf)
+* **Daniel Medici Martins:** Conceituação; Análise Formal; Investigação; Desenvolvimento, Implementação e Teste de Software; Design da Apresentação de Dados.
+* **Gabriel Ângelo Sembenelli:** Conceituação; Curadoria de dados; Análise Formal; Investigação; Metodologia; Administração do Projeto; Desenvolvimento, Implementação e Teste de Software; Design da Apresentação de Dados; Redação do Manuscrito Original; Redação - Revisão e Edição.
+* **Vinicius Higuchi:** Conceituação; Análise Formal; Investigação; Disponibilização de Ferramentas; Desenvolvimento, Implementação e Teste de Software.
