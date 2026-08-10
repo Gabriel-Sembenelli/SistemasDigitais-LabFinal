@@ -316,7 +316,7 @@ Abaixo, imagens do funcionamento no Questa para os casos simulados anteriormente
 
 A entrada do primeiro número não foi capturada nesse print, mas os valores foram:
 
-Número 1 (SW) = 0100000111 = 0 10000 0111 => +0.10000000 * 2^0111 (= +64)
+Número 1 (SW) = 0100000111 = 0 10000 0111 => +0.10000000 * 2^0111 (= +64)  
 Número 2 (SW) = 0110000101 = 0 11000 0101 => +0.11000000 * 2^0101 (= +24)
 
 Resultado
