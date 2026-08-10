@@ -316,64 +316,68 @@ Abaixo, imagens do funcionamento no Questa para os casos simulados anteriormente
 
 A entrada do primeiro número não foi capturada nesse print, mas os valores foram:
 
-Número 1 (SW) = 0100000111 = 0 10000 0111 => +0.10000000 * 2^0111 (= +64)  
-Número 2 (SW) = 0110000101 = 0 11000 0101 => +0.11000000 * 2^0101 (= +24)
+- Número 1 (SW) = 0100000111 = 0 10000 0111 => +0.10000000 * 2^0111 (= +64)
+- Número 2 (SW) = 0110000101 = 0 11000 0101 => +0.11000000 * 2^0101 (= +24)
 
 Resultado
-HEX5 = 11111111 = (apagado indica número positivo)
-HEX4 = 01000000 = 0.
-HEX3 = 10000011 = b
-HEX2 = 11000000 = 0
-HEX1 = 10000110 = E
-HEX0 = 11111000 = 7
+- HEX5 = 11111111 = (apagado indica número positivo)
+- HEX4 = 01000000 = 0.
+- HEX3 = 10000011 = b
+- HEX2 = 11000000 = 0
+- HEX1 = 10000110 = E
+- HEX0 = 11111000 = 7
+
 (= +88)
 
 ![Teste1](img/t1.png)
 
 **Teste 2**
 
-Número 1 (SW) = 0100000100 = 0 10000 0100 => +0.10000000 * 2^0100 (= +8)
-Número 2 (SW) = 0100000100 = 0 10000 0100 => +0.10000000 * 2^0100 (= +8)
+- Número 1 (SW) = 0100000100 = 0 10000 0100 => +0.10000000 * 2^0100 (= +8)
+- Número 2 (SW) = 0100000100 = 0 10000 0100 => +0.10000000 * 2^0100 (= +8)
 
 Resultado
-HEX5 = 11111111 = (apagado indica número positivo)
-HEX4 = 01000000 = 0.
-HEX3 = 10000000 = 8
-HEX2 = 11000000 = 0
-HEX1 = 10000110 = E
-HEX0 = 10010010 = 5
+- HEX5 = 11111111 = (apagado indica número positivo)
+- HEX4 = 01000000 = 0.
+- HEX3 = 10000000 = 8
+- HEX2 = 11000000 = 0
+- HEX1 = 10000110 = E
+- HEX0 = 10010010 = 5
+
 (= +16)
 
 ![Teste2](img/t2.png)
 
 **Teste 3**
 
-Número 1 (SW) = 0100010101 = 0 10001 0101 => +0.10001000 * 2^0101 (= +17)
-Número 2 (SW) = 1100000101 = 1 10000 0101 => -0.10000000 * 2^0101 (= +16)
+- Número 1 (SW) = 0100010101 = 0 10001 0101 => +0.10001000 * 2^0101 (= +17)
+- Número 2 (SW) = 1100000101 = 1 10000 0101 => -0.10000000 * 2^0101 (= +16)
 
 Resultado
-HEX5 = 11111111 = (apagado indica número positivo)
-HEX4 = 01000000 = 0.
-HEX3 = 10000000 = 8
-HEX2 = 11000000 = 0
-HEX1 = 10000110 = E
-HEX0 = 11111001 = 1
+- HEX5 = 11111111 = (apagado indica número positivo)
+- HEX4 = 01000000 = 0.
+- HEX3 = 10000000 = 8
+- HEX2 = 11000000 = 0
+- HEX1 = 10000110 = E
+- HEX0 = 11111001 = 1
+
 (= +1)
 
 ![Teste3](img/t3.png)
 
 **Teste 4**
 
-Número 1 (SW) = 0111010011 = 0 11101 0011 => +0.11101000 * 2^0011 (= +7.25)
-Número 2 (SW) = 1111000011 = 1 11100 0011 => -0.11100000 * 2^0011 (= +7.00)
+- Número 1 (SW) = 0111010011 = 0 11101 0011 => +0.11101000 * 2^0011 (= +7.25)
+- Número 2 (SW) = 1111000011 = 1 11100 0011 => -0.11100000 * 2^0011 (= +7.00)
 
 Resultado
-HEX5 = 11111111 = (apagado indica número positivo)
-HEX4 = 01000000 = 0.
-HEX3 = 11000000 = 0
-HEX2 = 11000000 = 0
-HEX1 = 10000110 = E
-HEX0 = 11000000 = 0
+- HEX5 = 11111111 = (apagado indica número positivo)
+- HEX4 = 01000000 = 0.
+- HEX3 = 11000000 = 0
+- HEX2 = 11000000 = 0
+- HEX1 = 10000110 = E
+- HEX0 = 11000000 = 0
+
 (= 0)
 
 ![Teste4](img/t4.png)
