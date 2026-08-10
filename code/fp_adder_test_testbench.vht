@@ -77,7 +77,7 @@ begin
  
         -- test vector 2: sum with carry out
         operation_boundary <= '1';
-        load_operand(SW, KEY, '0', "10000", "0100", '0'); -- aqui vai dar diferenca no testbench do fp_adder, já que estamos limitados a 10 bits
+        load_operand(SW, KEY, '0', "10000", "0100", '0');
         load_operand(SW, KEY, '0', "10000", "0100", '1');
         operation_boundary <= '0';
         wait for CLK_PERIOD * 2;
@@ -92,7 +92,7 @@ begin
         -- test vector 4: subtraction w/ too small result
         operation_boundary <= '1';
         load_operand(SW, KEY, '0', "11101", "0011", '0');
-        load_operand(SW, KEY, '1', "11100", "0011", '1'); -- aqui tbm
+        load_operand(SW, KEY, '1', "11100", "0011", '1');
         operation_boundary <= '0';
         wait for CLK_PERIOD * 2;
 
