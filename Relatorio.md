@@ -401,18 +401,21 @@ Utilizamos o [Gemini] para auxiliar na geração dos Testbenches, na refatoraç�
 2. Transcreva o código "Listing (4.13|3.12|3.19|3.20)" desse PDF para código copiável
 3. Generate a testbench for the current fp_adder. You can use this given code as a syntax reference. [fp_adder.vhd, eq1_testbench.vhd]
 4. Adicione diagramas nas seções 2 e 3 do relatório, ilustrando o fluxo de dados e as variáveis especificadas no VHDL.
+5. (arquivo fp_adder_test.vhd em anexo) Create a testbench for this entity. this file is for integrating the adder with the hex displays, i need to make sure the correct b16 numbers are being displayed. There is a multiplexing for selecting the operands. the KEY selects one of 2 numbers 13 bit (sign + 4bit exponent + 8bit mantissa separated into two parts here), this goes into the sw one at a time. How can i test it?
 
 **O Erro da IA (Alucinação):**
 1. O PDF anexado foi recortado do livro e continha os códigos `fp_adder.vhd` e `fp_adder_test.vhd`. A IA bugou e não transcreveu o segundo código corretamente.
 2. A notação com | indica que vários prompts separados foram feitos, cada um com um recorte específico do PDF. Nesses casos, a IA transcreveu corretamente, a menos de espaçamento e indentação, que precisaram ser ajustados.
 3. Além do `fp_adder.vhd`, foi anexado o `eq1_testbench.vhd` dado em outro laboratório. A IA gerou um testbench funcional com 3 testes básicos, mas que não testavam todos os casos da normalização.
 4. Gerou os mermaids, mas que não compilavam e apresentavam problemas nas problemas nas setas, que atravessavam os textos.
+5. Criou a funcao load_operand que recebe todos os parâmetros e carrega cada operando um por vez, o que responde a minha maior dúvida no momento do prompt. A IA também criou um process inteiro que eu ignorei, já que era muito mais complexo do que o necessário, e não testava o que o grupo queria. Que para este testbench era a integracao com o hardware, não a correção das somas.
 
 **A Correção Humana:**
 1. A forma de fazer o prompt inicial foi melhorada, dando origem aos prompts mostrados no item 2.
 2. O espaçamento e indentação foram ajustados manualmente para refletir o que estava no livro.
 3. Os testes gerados serviram como sintaxe, mas eventualmente foram completamente modificados à mão para testar o que era necessário.
 4. O código foi manualmente corrigido para compilar e as setas foram manualmente ajustadas para apontarem para os blocos corretos sem atravessar os textos
+5. O código foi simplificado para facilitar o entendimento, já que a IA acabou utilizando muitas features do vhdl que fogiam do escopo do problema e dificultavam a compreensão do que estava sendo feito.
 
 ## 6. Contribuição dos participantes
 
