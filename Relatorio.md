@@ -331,6 +331,8 @@ Resultado
 
 ![Teste1](img/t1.png)
 
+*Imagem do Teste 1 feito no Questa*
+
 **Teste 2**
 
 - Número 1 (SW) = 0100000100 = 0 10000 0100 => +0.10000000 * 2^0100 (= +8)
@@ -347,6 +349,8 @@ Resultado
 (= +16)
 
 ![Teste2](img/t2.png)
+
+*Imagem do Teste 2 feito no Questa*
 
 **Teste 3**
 
@@ -365,6 +369,8 @@ Resultado
 
 ![Teste3](img/t3.png)
 
+*Imagem do Teste 3 feito no Questa*
+
 **Teste 4**
 
 - Número 1 (SW) = 0111010011 = 0 11101 0011 => +0.11101000 * 2^0011 (= +7.25)
@@ -381,6 +387,8 @@ Resultado
 (= 0)
 
 ![Teste4](img/t4.png)
+
+*Imagem do Teste 4 feito no Questa*
 
 *Etapa 4*
 
