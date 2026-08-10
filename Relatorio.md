@@ -117,9 +117,9 @@ flowchart TD
 
 ### Simulação
 
-Neste Repositório, utilizamos os seguintes arquivos para a simulação (`fp_adder_test.vhd`; `fp_adder.vhd`; `hex_to_sseg.vhd`) teste (`fp_adder_test_testbench.vht`) e configuração (`DE10_LITE.qsf`).
+Neste Repositório, utilizamos os seguintes arquivos para a simulação (`fp_adder.vhd`; `fp_adder_test.vhd`; `hex_to_sseg.vhd`) teste (`fp_adder_testbench.vhd`; `fp_adder_test_testbench.vht`) e configuração (`DE10_LITE.qsf`).
 
-> No diretório `utils` é possível encontrar scripts úteis em geral, como conversores de decimal para float binário, resultado hexadecimal para decimal, além de um gerador de todos os números representáveis com a lógica desenvolvida.
+> No diretório `code/utils` é possível encontrar scripts úteis em geral, como conversores de decimal para float binário, resultado hexadecimal para decimal, além de um gerador de todos os números representáveis com a lógica desenvolvida.
 
 Para investigar o 4º estágio (normalização) na simulação, consideramos as quatro situações possíveis:
 
