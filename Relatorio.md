@@ -16,6 +16,8 @@ Este projeto adapta o somador de ponto flutuante simplificado (13 bits) do livro
 
 ## 2. Descrição gráfica do funcionamento do sistema
 
+Neste Repositório, utilizamos os seguintes arquivos para a simulação ( fp_adder_test.vhd ; fp_adder.vhd ; hex_to_sseg.vhd ) teste ( fp_adder_test_testbench.vht) e configuração (DE10_LITE.qsf).
+
 A parte lógica do somador (`fp_adder.vhd`) recebe dois números em formato de ponto flutuante $(-1)^s \times 0.f \times 2^e$, onde $s$ corresponde ao sinal, $f$ corresponde à parte fracionária (ou significando) e $e$ corresponde ao expoente.
 O funcionamento da soma é em 4 estágios:
 
