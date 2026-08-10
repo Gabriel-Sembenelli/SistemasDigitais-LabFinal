@@ -16,8 +16,6 @@ Este projeto adapta o somador de ponto flutuante simplificado (13 bits) do livro
 
 ## 2. Descrição gráfica do funcionamento do sistema
 
-Neste Repositório, utilizamos os seguintes arquivos para a simulação ( fp_adder_test.vhd ; fp_adder.vhd ; hex_to_sseg.vhd ) teste ( fp_adder_test_testbench.vht) e configuração (DE10_LITE.qsf).
-
 A parte lógica do somador (`fp_adder.vhd`) recebe dois números em formato de ponto flutuante $(-1)^s \times 0.f \times 2^e$, onde $s$ corresponde ao sinal, $f$ corresponde à parte fracionária (ou significando) e $e$ corresponde ao expoente.
 O funcionamento da soma é em 4 estágios:
 
@@ -31,7 +29,20 @@ O funcionamento da soma é em 4 estágios:
 
 O resultado após a normalização é encaminhado para as saídas e o sinal resultante é o mesmo do maior número (big).
 
-O diagrama ilustra esse fluxo e as respectivas variáveis VHDL da entidade:
+As variáveis usadas ao longo do código do somador (`fp_adder.vhd`) são:
+
+- `sign1`|`2`, `frac1`|`2`, `exp1`|`2` são as entradas (sinal, significando e expoente) do primeiro e segundo número, respectivamente;
+- `signb`|`s`, `fracb`|`s`, `expb`|`s` são os valores (sinal, significando e expoente) dos números big e small, respectivamente;
+- `exp_diff` é a diferença de expoentes (`expb` - `exps`)
+- `fraca` é o significando do menor número alinhado
+- `sum` é o resultado da soma (ou subtração, a depender dos sinais) de `fracb` e `fraca`
+- `lead0` é a quantidade de zeros à esquerda em `sum`
+- `sum_norm` é `sum` normalizado de acordo com `lead0`
+- `fracn` é a parte fracionária após normalização com condições especiais
+- `expn` é o expoente após normalização com condições especiais
+- `sign_out`, `frac_out`, `exp_out` são os valores (sinal, significando e expoente) do resultado final
+
+O diagrama a seguir ilustra o fluxo e as respectivas variáveis VHDL da entidade:
 
 ```mermaid
 flowchart TD
@@ -102,7 +113,9 @@ flowchart TD
 
 ## 4. Evidências de Validação
 
-### Simulação 
+### Simulação
+
+Neste Repositório, utilizamos os seguintes arquivos para a simulação (`fp_adder_test.vhd`; `fp_adder.vhd`; `hex_to_sseg.vhd`) teste (`fp_adder_test_testbench.vht`) e configuração (`DE10_LITE.qsf`).
 
 Para investigar o 4º estágio (normalização) na simulação, consideramos as quatro situações possíveis:
 
@@ -155,10 +168,10 @@ Esse caso dá um número pequeno demais, ou seja, um número em que a quantidade
 
 ```txt
 base 10 |         base 2           | base 16 (gtkwave)
- +15.25 |   +0.1111 0100 * 2^0100  | (s,f,e) = (0, F4, 4)
- -15.00 |   -0.1111 0000 * 2^0100  | (s,f,e) = (1, F0, 4)
+  +7.25 |   +0.1110 1000 * 2^0011  | (s,f,e) = (0, E8, 3)
+  -7.00 |   -0.1110 0000 * 2^0011  | (s,f,e) = (1, E0, 3)
   ————— |   —————————————————————  | 
-= +0.25 | = +0.0000 0100 * 2^0100  | 
+= +0.25 | = +0.0000 1000 * 2^0011  | 
 === Normalização zera o resultado (lead0 > expoente) ====
 =  0    | = +0.0000 0000 * 2^0000  | (s,f,e) = (0, 00, 0)
 ```
@@ -207,19 +220,6 @@ O código `fp_adder_test_testbench.vhd` foi utilizado para originar as imagens a
 ![Imagem2](img/fp_adder_testbench-02.png)
 
 *Teste mostrando todas as variáveis do código, com as formas de onda obtidas a partir do uut*
-
-Onde,
-
-- `sign1`|`2`, `frac1`|`2`, `exp1`|`2` são as entradas (sinal, significando e expoente) do primeiro e segundo número, respectivamente;
-- `signb`|`s`, `fracb`|`s`, `expb`|`s` são os valores (sinal, significando e expoente) dos números big e small, respectivamente;
-- `exp_diff` é a diferença de expoentes (`expb` - `exps`)
-- `fraca` é o significando do menor número alinhado
-- `sum` é o resultado da soma (ou subtração, a depender dos sinais) de `fracb` e `fraca`
-- `lead0` é a quantidade de zeros à esquerda em `sum`
-- `sum_norm` é `sum` normalizado de acordo com `lead0`
-- `fracn` é a parte fracionária após normalização com condições especiais
-- `expn` é o expoente após normalização com condições especiais
-- `sign_out`, `frac_out`, `exp_out` são os valores (sinal, significando e expoente) do resultado final
 
 ### Código VHDL Final
 
@@ -308,7 +308,7 @@ end arch;
 
 ### Funcionamento na Placa
 
-Abaixo, imagens do funcionamento na Placa para 4 casos.
+Abaixo, imagens do funcionamento na Placa para os casos descritos.
 
 *Etapa 4 (considerando qeu a Etapa 4 considera toda a documentação em si)*
 

@@ -58,11 +58,11 @@ begin
         
         -- test vector 4: subtraction w/ too small result
         t_sign1 <= '0';
-        t_exp1  <= "0100";
-        t_frac1 <= "11110100";
+        t_exp1  <= "0011";
+        t_frac1 <= "11101000";
         t_sign2 <= '1';
-        t_exp2  <= "0100";
-        t_frac2 <= "11110000";
+        t_exp2  <= "0011";
+        t_frac2 <= "11100000";
         wait for 200 ns;
         
         -- test vector 5: sum w/ exponent overflow
