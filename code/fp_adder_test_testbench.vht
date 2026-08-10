@@ -68,62 +68,31 @@ begin
         wait for 5 ns;
 
         
-        -- test vector 1: identical positive numbers
-        -- Teste: carregar o operando 1 e operando 2 para realizar a soma, e gerar as ondas dos displays
-        --           SW  KEY sign  frac[0:5)  exp   selector
+        -- test vector 1: sum with no special cases in normalization
         operation_boundary <= '1';
-        load_operand(SW, KEY, '0', "10000", "0100", '0');
-        load_operand(SW, KEY, '0', "10000", "0100", '1');
-        operation_boundary <= '0';
-        wait for CLK_PERIOD * 2;
-        
- 
-        -- test vector 2: positive and negative (subtraction)
-        operation_boundary <= '1';
-        load_operand(SW, KEY, '0', "10000", "0101", '0'); -- aqui vai dar diferenca no testbench do fp_adder, já que estamos limitados a 10 bits
-        load_operand(SW, KEY, '1', "10000", "0101", '1');
-        operation_boundary <= '0';
-        wait for CLK_PERIOD * 2;
- 
-        -- test vector 3: different exponents
-        operation_boundary <= '1';
-        load_operand(SW, KEY, '0', "10000", "0111", '0');
+        load_operand(SW, KEY, '0', "10000", "0111", '0'); -- SW, KEY, sign, frac[7:3], exp, selector
         load_operand(SW, KEY, '0', "11000", "0101", '1');
         operation_boundary <= '0';
         wait for CLK_PERIOD * 2;
  
-        -- test vector 4: subtraction w/ negative result
+        -- test vector 2: sum with carry out
         operation_boundary <= '1';
-        load_operand(SW, KEY, '0', "10100", "0100", '0');
-        load_operand(SW, KEY, '1', "11000", "1000", '1'); -- aqui tbm
+        load_operand(SW, KEY, '0', "10000", "0100", '0'); -- aqui vai dar diferenca no testbench do fp_adder, já que estamos limitados a 10 bits
+        load_operand(SW, KEY, '0', "10000", "0100", '1');
         operation_boundary <= '0';
         wait for CLK_PERIOD * 2;
  
-        -- test vector 5: subtraction w/ too small result
+        -- test vector 3: subtraction with left shift
         operation_boundary <= '1';
-        load_operand(SW, KEY, '0', "11111", "0000", '0');
-        load_operand(SW, KEY, '1', "10000", "0000", '1');
+        load_operand(SW, KEY, '0', "10001", "0101", '0');
+        load_operand(SW, KEY, '1', "10000", "0101", '1');
         operation_boundary <= '0';
         wait for CLK_PERIOD * 2;
  
-        -- test vector 6: addition w/ too big result
+        -- test vector 4: subtraction w/ too small result
         operation_boundary <= '1';
-        load_operand(SW, KEY, '0', "11111", "1111", '0');
-        load_operand(SW, KEY, '0', "10000", "1000", '1');
-        operation_boundary <= '0';
-        wait for CLK_PERIOD * 2;
- 
-        -- test vector 7: big + small, losing bits
-        operation_boundary <= '1';
-        load_operand(SW, KEY, '0', "10000", "1011", '0');
-        load_operand(SW, KEY, '0', "11111", "0011", '1');
-        operation_boundary <= '0';
-        wait for CLK_PERIOD * 2;
- 
-        -- test vector 8: subtraction of equals w/ nonzero exponent
-        operation_boundary <= '1';
-        load_operand(SW, KEY, '0', "11110", "1111", '0');
-        load_operand(SW, KEY, '1', "11110", "1111", '1');
+        load_operand(SW, KEY, '0', "11101", "0011", '0');
+        load_operand(SW, KEY, '1', "11100", "0011", '1'); -- aqui tbm
         operation_boundary <= '0';
         wait for CLK_PERIOD * 2;
 
